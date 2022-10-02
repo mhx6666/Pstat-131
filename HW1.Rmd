@@ -5,14 +5,44 @@ date: '2022-10-01'
 output: html_document
 ---
 
-Question1
+-   Question 1
 
-Supervised learning accurately predict future response by giving the model observed output and input. Unsupervised machine learning to analyze unlabeled datasets with no response.
+Supervised learning accurately predict future response by giving the model observed output and input. Unsupervised machine learning to analyze unlabeled data with no response.
 
 The major difference between them is that unsupervised machine learning model learn without a supervisor，because unsupervised learning model does need to discover hidden patterns itself. the supervised learning is created to measure its accuracy.
 
-from lecture slides page #31-34
+\*from lecture slides page #31-34
 
+-   Question 2
+
+The Y of regression is quantitative and the Y of Classification is qualitative, which meas that the former predict a continuous values, classification predicts categorical values.
+
+\*from lecture slides page #33
+
+-   Question 3
+
+Mean Squared Error (MSE), Mean Absolute Error (MAE)
+
+-   Question 4
+
+Descriptive models: Choose the model to best visually emphasize a trend in data
+
+Inferential models: Use the model to state relationship between outcome and predictors.
+
+Predictive models: Use the model to predict the outcomes with minimum reducible error.
+
+*from lecture slides page #39
+
+Question 5
+a. 
+
+b. mechanistic model is easier to understand, because mechanistic model's predictions are based on scientific theory, not on potentially inaccurate observations. The empirically-driven model requires requires developing a theory and applying it, but this theory is only observed and inferred in your model.
+
+c. Bias and variance are inversely connected. So there are trade-offs to be made in the process of modifying the algorithm. In many cases, Mechanistic models require multiple parameters to make the model more flexible, but this may also increase variance. In other words, the output prediction results are not concentrated enough. Conversely, simplistic models can lead to overfitting. Empirically driven model discovery should be less empirically accurate because it requires a lot of empirical observation. However, the Empirical models are not able to predict beyond a particular operating range.
+
+
+
+*from lecture slides page #38
 ```{r setup, include=T}
 
 
@@ -20,7 +50,6 @@ from lecture slides page #31-34
 
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 
 ```{r cars}
 summary(cars)
