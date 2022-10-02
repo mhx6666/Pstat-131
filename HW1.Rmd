@@ -3,8 +3,8 @@ title: "Pstat 131 HW1"
 author: "Hongxu Ma"
 date: '2022-10-01'
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 -   Question 1
