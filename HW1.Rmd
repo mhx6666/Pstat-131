@@ -3,8 +3,8 @@ title: "Pstat 131 HW1"
 author: "Hongxu Ma"
 date: '2022-10-01'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 -   Question 1
@@ -106,7 +106,7 @@ Exercise 4:
 
 ```{r}
 library(ggplot2)
-ggplot(mpg, aes(x = factor(mpg$cyl), y = mpg$hwy)) +  geom_boxplot() + 
+ggplot(mpg, aes(x = factor(cyl), y = hwy)) +  geom_boxplot() + 
   xlab("number of cylinders") + ylab("highway miles per gallon")
 ```
 
