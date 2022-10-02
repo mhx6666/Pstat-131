@@ -2,26 +2,34 @@
 title: "Pstat 131 HW1"
 author: "Hongxu Ma"
 date: '2022-10-01'
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 -   Question 1
 
 Supervised learning accurately predict future response by giving the model observed output and input. Unsupervised machine learning to analyze unlabeled data with no response.
 
-The major difference between them is that unsupervised machine learning model learn without a supervisor，because unsupervised learning model does need to discover hidden patterns itself. the supervised learning is created to measure its accuracy.
+The major difference between them is that unsupervised machine learning model learn without a supervisor,because unsupervised learning model does need to discover hidden patterns itself. the supervised learning is created to measure its accuracy.
 
-*from lecture slides page #31-34
+\*from lecture slides page #31-34
+
+------------------------------------------------------------------------
 
 -   Question 2
 
 The Y of regression is quantitative and the Y of Classification is qualitative, which meas that the former predict a continuous values, classification predicts categorical values.
 
-*from lecture slides page #33
+\*from lecture slides page #33
+
+------------------------------------------------------------------------
 
 -   Question 3
 
 Mean Squared Error (MSE), Mean Absolute Error (MAE)
+
+------------------------------------------------------------------------
 
 -   Question 4
 
@@ -31,43 +39,91 @@ Inferential models: Use the model to state relationship between outcome and pred
 
 Predictive models: Use the model to predict the outcomes with minimum reducible error.
 
-*from lecture slides page #39
+\*from lecture slides page #39
 
-Question 5
-a. Mechanical models use scientific theories to predict what will happen in the real world. Empirical models develop theories based on a large number of facts or observations about real-world events.
+------------------------------------------------------------------------
 
-b. mechanistic model is easier to understand, because mechanistic model's predictions are based on scientific theory, not on potentially inaccurate observations. The empirically-driven model requires requires developing a theory and applying it, but this theory is only observed and inferred in your model.
+-   Question 5
 
-c. Bias and variance are inversely connected. So there are trade-offs to be made in the process of modifying the algorithm. In many cases, Mechanistic models require multiple parameters to make the model more flexible, but this may also increase variance. In other words, the output prediction results are not concentrated enough. Conversely, simplistic models can lead to overfitting. Empirically driven model discovery should be less empirically accurate because it requires a lot of empirical observation. However, the Empirical models are not able to predict beyond a particular operating range.
+a.  Mechanical models use scientific theories to predict what will happen in the real world. Empirical models develop theories based on a large number of facts or observations about real-world events.
 
-*from lecture slides page #38
+b.  mechanistic model is easier to understand, because mechanistic model's predictions are based on scientific theory, not on potentially inaccurate observations. The empirically-driven model requires requires developing a theory and applying it, but this theory is only observed and inferred in your model.
 
-Question 6
+c.  Bias and variance are inversely connected. So there are trade-offs to be made in the process of modifying the algorithm. In many cases, Mechanistic models require multiple parameters to make the model more flexible, but this may also increase variance. In other words, the output prediction results are not concentrated enough. Conversely, simplistic models can lead to overfitting. Empirically driven model discovery should be less empirically accurate because it requires a lot of empirical observation. However, the Empirical models are not able to predict beyond a particular operating range.
+
+\*from lecture slides page #38
+
+------------------------------------------------------------------------
+
+-   Question 6
 
 The first one is predictive, because campaigns predict future behavior based on past information about voters.
 
 The second one is inferential, because the campaign wants to discover the relationship that exists between politicians and voters. This question focuses on the hypothesis that the probability that a voter will vote increases after meeting a candidate.
 
+------------------------------------------------------------------------
+
+-   Exercise 1:
+
 ```{r setup, include=T}
-"Exercise 1"
+library(ggplot2)
 
-
-
-
-
+hist(x = mpg$hwy, xlab = "highway miles per gallon")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r cars}
-summary(cars)
+Most of these popular cars drive 15 to 30 miles per gallon on the highway
+
+------------------------------------------------------------------------
+
+-   Exercise 2:
+
+```{r}
+x = mpg$hwy
+y = mpg$cty
+plot(x = mpg$hwy, y = mpg$cty, type="p", , xlab = "highway miles per gallon", 
+     ylab ="city miles per gallon")
+abline(lm(y~x))
 ```
 
-## Including Plots
+From the graph, a positive correlation is found between Highway miles per gallon and City miles per gallon.
 
-You can also embed plots, for example:
+------------------------------------------------------------------------
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+-   Exercise 3:
+
+```{r}
+x = sort(table(mpg$manufacturer), decreasing = TRUE)  
+y = data.frame(x)
+barplot(x, names.arg = y$Var1, horiz = TRUE, cex.names = 0.5, las = 1)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Dodge produced the most cars and Lincoln produced the least number of cars.
+
+------------------------------------------------------------------------
+
+Exercise 4:
+
+```{r}
+library(ggplot2)
+ggplot(mpg, aes(x = factor(mpg$cyl), y = mpg$hwy)) +  geom_boxplot() + 
+  xlab("number of cylinders") + ylab("highway miles per gallon")
+```
+
+The higher the number of cylinders, the lower the highway miles per gallon.
+
+------------------------------------------------------------------------
+
+Exercise 5:
+
+```{r}
+library(corrplot)
+M = cor(data.frame(mpg$displ, mpg$year, mpg$cyl, mpg$cty, mpg$hwy))
+corrplot(M, method = 'circle', order = 'FPC', type = 'lower', diag = FALSE, )
+```
+
+Engine displacement and number of cylinders are positively correlated; city miles per gallon and highway miles per gallon are positively correlated.
+
+City/highway miles per gallon is negatively correlated with both engine displacement and number of cylinders.
+
+Lastly, none of the correlations between year and other variables were significant.
