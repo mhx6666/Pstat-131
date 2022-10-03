@@ -27,7 +27,9 @@ The Y of regression is quantitative and the Y of Classification is qualitative, 
 
 -   Question 3
 
-Mean Squared Error (MSE), Mean Absolute Error (MAE)
+Regression model: Mean Squared Error (MSE), Mean Absolute Error (MAE)
+
+Classification model: Accuracy, Confusion matrix
 
 ------------------------------------------------------------------------
 
@@ -66,13 +68,13 @@ The second one is inferential, because the campaign wants to discover the relati
 -   Exercise 1:
 
 ```{r setup, include=T}
-library(ggplot2)
+library(tidyverse)
 
 hist(x = mpg$hwy, xlab = "highway miles per gallon")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Most of these popular cars drive 15 to 30 miles per gallon on the highway
+Most of these popular cars drive 15 to 30 miles per gallon on the highway, because 15-30 have high frequency.
 
 ------------------------------------------------------------------------
 
@@ -118,8 +120,8 @@ Exercise 5:
 
 ```{r}
 library(corrplot)
-M = cor(data.frame(mpg$displ, mpg$year, mpg$cyl, mpg$cty, mpg$hwy))
-corrplot(M, method = 'circle', order = 'FPC', type = 'lower', diag = FALSE, )
+M <- cor(select_if(mpg, is.numeric))
+corrplot(M, method = 'number', order = 'AOE', type = 'lower', diag = FALSE, )
 ```
 
 Engine displacement and number of cylinders are positively correlated; city miles per gallon and highway miles per gallon are positively correlated.
